@@ -27,6 +27,8 @@ The `echo: false` option disables the printing of code (only output is displayed
 
 # [My GitHub](https://github.com/jrbaer14?tab=repositories)
 
-This holds my data analysis repositories.
+This site holds my data analysis repositories.
 
-# My Resume
+# [Resume](https://github.com/jrbaer14/websitejennabaer/blob/main/Resume.JennaBaer%20(3).pdf)
+
+You can find my work history, awards and skills here.
