@@ -1,0 +1,25 @@
+---
+title: "Home Page"
+format: html
+editor: visual
+---
+
+# Jenna Baer Portfolio
+
+# [My GitHub](https://github.com/jrbaer14?tab=repositories)
+
+This site holds my data analysis repositories.
+
+# [Resume](https://github.com/jrbaer14/websitejennabaer/blob/main/Resume.JennaBaer%20(3).pdf)
+
+You can find my work history, awards and skills attached here.
+
+My contact information can be found here as well.
+
+# Writing Sample Research Paper
+
+This website has a copy of my best academic research paper.
+
+# Writing Sample News Article
+
+This website highlights a piece of my work
