@@ -14,4 +14,12 @@ This site holds my data analysis repositories.
 
 You can find my work history, awards and skills attached here.
 
-# Writing Sample Research Paper
+My contact information can be found here as well.
+
+# [Writing Sample Research Paper](https://fdf2a4e247794f82859135b6830bd778.app.posit.cloud/file_show?path=%2Fcloud%2Fproject%2FWriting+Sample.html)
+
+This website has a copy of my best academic research paper.
+
+# Writing Sample News Article
+
+This website highlights a piece of my work
