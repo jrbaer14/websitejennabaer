@@ -13,3 +13,5 @@ This site holds my data analysis repositories.
 # [Resume](https://github.com/jrbaer14/websitejennabaer/blob/main/Resume.JennaBaer%20(3).pdf)
 
 You can find my work history, awards and skills attached here.
+
+# Writing Sample Research Paper
