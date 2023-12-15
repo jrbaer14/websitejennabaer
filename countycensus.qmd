@@ -8,6 +8,7 @@ editor: visual
 
 First I ran the packages I needed to execute this project, including a variety of mapping tools.
 
+
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE)
 
