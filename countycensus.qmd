@@ -65,6 +65,11 @@ irish_and_county %>%
   select(GEOID, NAME.x, irish_pop, county_pop)%>%
   mutate(perc_irish = (B04006_049E/B01003_001E)*100) %>%
   arrange(perc_irish)
+
+percent_irish <- irish_and_county %>%
+  select(GEOID, NAME.x, irish_pop, county_pop)%>%
+  mutate(perc_irish = (B04006_049E/B01003_001E)*100) %>%
+  arrange(perc_irish)
   
   
 
@@ -74,7 +79,110 @@ irish_and_county %>%
 
 ```
 
+I ran the following packages to be able to use the mapping functions.
+
+```{r}
+library(sf)
+library(tmaptools)
+library(htmltools)
+library(janitor)
+library(rmapshaper)
+library(here)
+library(tidyverse)
+library(tigris)
+library(tmap)
+library(terra)
+options(tigris_class = "sf")
+
+```
 
 
 ```{r}
+
+percent_irish <- irish_and_county %>%
+  select(GEOID, NAME.x, irish_pop, county_pop)%>%
+  mutate(perc_irish = (B04006_049E/B01003_001E)*100) %>%
+  arrange(perc_irish)%>%
+  select(-ends_with("M"))
+
+colnames(percent_irish) <- sub("E$", "", colnames(percent_irish))
+
+percent_irish
+```
+
+
+```{r}
+myvars <- c(county_pop = "B01003_001E", irish_pop = "B04006_049E")
+
+ma_counties_withgeo<- get_acs(geography = "county",
+                       variables = c(myvars),
+                       state = "MA",
+                       output = "wide",
+                       geometry = TRUE)
+
+```
+
+
+```{r}
+ma_counties_withgeo <- ma_counties_withgeo %>%
+  select(-ends_with("M"))
+
+
+ ma_counties_withgeo 
+
+```
+
+
+
+``` {r}
+colnames(ma_counties_withgeo) <- sub("E$", "", colnames(ma_counties_withgeo))
+
+ma_counties_withgeo
+
+ma_counties_withgeo <- ma_counties_withgeo %>%
+  mutate(per_irish = (irish_pop/county_pop)*100)
+
+
+```
+
+
+
+```{r}
+
+mylabel <- glue::glue("{ma_counties_withgeo$NAM} {ma_counties_withgeo$per_irish}")
+
+mapview(ma_counties_withgeo, zcol= "per_irish", 
+        col.regions = RColorBrewer::brewer.pal(7, "Greens"), 
+        alpha.regions = 1)
+
+```
+
+
+```{r}
+
+mypopup <- glue::glue("<strong>{ma_counties_withgeo$NAM}</strong><br />
+                      Total Population: {ma_counties_withgeo$totalpop}<br />
+                      Percent Irish: {ma_counties_withgeo$per_irish}") %>% 
+ 
+  lapply(htmltools::HTML)
+
+```
+
+
+
+```{r}
+
+head(mypopup)
+
+```
+
+
+
+```{r}
+mapview(ma_counties_withgeo, zcol= "per_irish", 
+        col.regions = RColorBrewer::brewer.pal(7, "Greens"), 
+        alpha.regions = 1,
+        popup = mypopup)
+
+```
 
