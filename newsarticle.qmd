@@ -1,0 +1,43 @@
+---
+title: "Writing Sample (News Article)"
+format: html
+editor: visual
+---
+
+# News Article
+
+[Home Page](https://jrbaer14.github.io/websitejennabaer/)
+
+### The following article was published on Houston InnovationMap's website. It is about a panel on Web3 technology and impact investing.
+
+Houston innovators dispelled some of the misconceptions about the decentralized web and Web3 technology at a recent panel, which highlighted the technology\'s ability to bring communities together.
+
+DivInc, a Texas-based accelerator focused on helping BIPOC and female founders on their entrepreneurial journeys, hosted a panel to discuss the benefits of transitioning to DWeb for entrepreneurs, personal success stories of using Web3 technology, and promoted its inaugural DWeb for Social Impact Accelerator.
+
+The panelists included Giorgio Villani, founder of Spindletop Digital; Akeel Bernard, community development manager of Impact Hub Houston; and Ayoola John, co-founder and CEO of Astronaut. The discussion was moderated by Cherise Luter, marketing director of DivInc.
+
+With the application for the DWeb 12-week accelerator program live, announced earlier this year, Luter says the panel was initiated to help explain the links between impact entrepreneurship and DWeb, two areas that people may think are very separate.
+
+\"This is our first time hosting a social impact accelerator here in Houston and we\'re really excited about it. We added this extra piece of Web3, DWeb -- how social entrepreneurs are utilizing this new technology to push forward their vision and bring about their startups,\'\" Luter says.
+
+Villani, a founder of multiple companies that employ Web3 innovation, defined this technology as a tool of decentralization in which users are responsible for their own data and transactions are kept transparent by being publicly accessible. Villani contrasted this setup to the modern internet, known as Web2, in which users entrust third parties with encrypting their personal data, allowing them to mine and profit from this information.
+
+\"Web3 is a flipping of the script a little bit -- it\'s where we\'re focusing primarily on the individual, where the individual is being empowered. Everybody manages their own keys and you don\'t have to trust a third party to do anything within the system ... you don\'t have to cede your power to third party entities -- it\'s really an empowering thing to do,\" Villani explains.
+
+Villani addressed the misjudgment that the decentralized web is too complicated for the everyday person to use by highlighting his partnership with multimedia Houston artist J. Omar Ochoa who is incorporating Web3 technologies like AI and NFTs into an exhibit, allowing him to interact directly with buyers.
+
+\"The misconception is that (Web3) is difficult or too technical and it\'s really not. There\'s some stuff that takes a little bit of work but once you\'ve done that the whole world of Web3 opens up in front of you,\" Villani says.
+
+Web3 technologies are not all inherently about decentralization of the internet so much as rethinking how to rebuild the web to bring people together based on shared interests, adds John, co-founder of a social impact company that uses Web3 to help brands build online communities.
+
+For Villani, it's about the opportunity for connection.
+
+\"When you look around you, a lot of people these days are lonely and it\'s funny because we have these platforms like Facebooks, Instagrams, WhatsApps, Snapchats and they\'re all designed to bring us together but if you really look around you we\'re not together,\" Villani explains. \"For me fundamentally, we have to reimagine how we build social networks, how we connect people.\"
+
+In contrast to much of the tech world, John also says that NFTs and cryptocurrencies, both of which are considered Web3 tools as they operate on blockchains, are not components of DWeb because they are tied up by monopolies. As the majority of NFTs are sold on one website and Bitcoin continues to dominate the cryptocurrency market, John explains they can not qualify as decentralized.
+
+\"I believe I can make an argument that crypto at its core is not about decentralization. What I believe crypto is and the Web3 movement is about reimagination,\" John shares.
+
+Bernard, who works directly with social impact entrepreneurs at Impact Hub Houston, says he anticipates founders looking to secure investors for their DWeb related companies will struggle at first because they must concisely explain the technology at play. Bernard explained he previously has coached entrepreneurs on how to explain to investors that investing in social impact companies is not charity but a typical investment that will pay returns and expects DWeb focused companies will face similar uphill battles of getting investors to understand their concepts.
+
+\"I think with DWeb because it\'s a newer network it\'s going to require social impact entrepreneurs to educate investors and also users on the benefits of DWeb,\" Bernard explains. \"You\'re going to have to be able to explain to them in a clear and consistent way especially to the investors, folks that have the means but don\'t understand what DWeb is, how it can be utilized for success.\"
