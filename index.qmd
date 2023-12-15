@@ -26,6 +26,6 @@ This website has a copy of my best academic research paper.
 
 This website highlights a piece of my work that was published online.
 
-# County Census Analysis Example
+# [County Census Analysis Example](https://jrbaer14.github.io/websitejennabaer/countycensus.html)
 
 This website showcases an example of my abilities to code with RStudio packages and GitHub.
