@@ -1,0 +1,172 @@
+---
+title: "countycensus"
+format: html
+editor: visual
+---
+
+
+[Home Page](https://jrbaer14.github.io/websitejennabaer/)
+
+First I ran the packages I needed to execute this project, including a variety of mapping tools.
+
+
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+
+library(dplyr)
+library(tidyverse)
+library(tigris)
+library(sf)
+library(tidycensus)
+library(htmltools)
+library(janitor)
+library(here)
+library(mapview)
+library(leafsync)
+library(leaflet.extras2)
+options(scipen=999)
+options(tigris_class = "sf")
+```
+
+
+I then used a census API Key to query the data I plan to look for.
+
+
+```{r}
+census_api_key("400666ffe99f9585382f01a246a13f9f9255452f", overwrite=TRUE)
+```
+
+
+I want to analyze which counties in Massachusetts have the highest percentage of people reporting they have Irish ancestry. To find this information I queried the American Community Survey.
+
+I was able to pull the amount of people who claim Irish ancestry in every county in Massachusetts(irish_pop). I was also able to pull the total populations from all the counties in Massachusetts (county_pop).
+
+
+```{r}
+
+irish_pop <- "B04006_049E"
+
+irishancestry <- get_acs(geography = "county", variables = irish_pop, state = "MA", output = "wide")
+
+irishancestry
+
+
+county_pop <- "B01003_001E"
+
+totalpopulation <- get_acs(geography = "county", variables = county_pop, state = "MA", output = "wide")
+
+totalpopulation
+
+```
+
+
+I then created a new table combining this data to find the percentage of people who claim Irish ancestry in each county. I did this by doing a left join function to combine all of the data from the tables together. I then selected for the GEOID, Name of the counties, the estimate of the Irish descent population, and the estimate of the total population. From there, I created a new column for the percentage of people who claim Irish ancestry by using the mutate function to divide the Irish descendant population by the total population for each county. I then arranged the percent Irish variable in ascending order.
+
+
+```{r}
+
+irish_pop <- "B04006_049E"
+
+county_pop <- "B01003_001E"
+
+irish_and_county <- left_join(irishancestry, totalpopulation, by="GEOID")
+
+irish_and_county %>%
+  select(GEOID, NAME.x, irish_pop, county_pop)%>%
+  mutate(perc_irish = (B04006_049E/B01003_001E)*100) %>%
+  arrange(perc_irish)
+
+percent_irish <- irish_and_county %>%
+  select(GEOID, NAME.x, irish_pop, county_pop)%>%
+  mutate(perc_irish = (B04006_049E/B01003_001E)*100) %>%
+  arrange(perc_irish)
+
+```
+
+```{r}
+library(sf)
+library(tmaptools)
+library(rmapshaper)
+library(tmap)
+
+```
+
+
+I simply brought down the whole analysis I previously did (and condensed it all into one line of code) so it would be easier to see as I coded the map.
+
+
+```{r}
+
+percent_irish <- irish_and_county %>%
+  select(GEOID, NAME.x, irish_pop, county_pop)%>%
+  mutate(perc_irish = (B04006_049E/B01003_001E)*100) %>%
+  arrange(perc_irish)%>%
+  select(-ends_with("M"))
+
+colnames(percent_irish) <- sub("E$", "", colnames(percent_irish))
+
+percent_irish
+```
+
+
+I then pulled the geographic data for the counties from the American community survey and tied it to the original variables I looked at into one data set.
+
+
+```{r}
+myvars <- c(county_pop = "B01003_001E", irish_pop = "B04006_049E")
+
+ma_counties_withgeo<- get_acs(geography = "county",
+                       variables = c(myvars),
+                       state = "MA",
+                       output = "wide",
+                       geometry = TRUE)
+
+
+ma_counties_withgeo
+
+```
+
+
+I then again found the percentage of the population that has Irish ancestry in Massachusetts by mutating a new column, dividing the irish-population variable by the county-population variable and multiplying it by 100. I had to reconfigure the work I previously did in order to be able to map the mutated column (I needed to have the geographies of the county included in the dataset).
+
+
+```{r}
+colnames(ma_counties_withgeo) <- sub("E$", "", colnames(ma_counties_withgeo))
+
+ma_counties_withgeo
+
+ ma_counties_withgeo <- ma_counties_withgeo %>%
+  mutate(per_irish = (irish_pop/county_pop)*100)
+
+```
+
+
+I then used the mapview function to create a map of the percentage of people who have Irish ancestry in each county in Massachusetts. The color scheme is set so that the darker the red, the higher the percentage of people have Irish ancestry. Right now when you hover over each county you will be able to see the actual percentage of the population that has Irish ancestry.
+
+
+```{r}
+mapview(ma_counties_withgeo, zcol= "per_irish", 
+        col.regions = RColorBrewer::brewer.pal(9, "Reds"))
+```
+
+
+Customizing Labels: Here I am creating a custom label for the map itself through the glue function.This way, while hovering over each county you can see the name and the percentenage of people with Irish ancestry.I am also creating a customized pop-up function, so when you run your cursor over each county, the total population and the percentage of the county that is of Irish descent will hover over it, as will the label for each.
+
+
+```{r}
+
+mypopup <- glue::glue("<strong>{ma_counties_withgeo$NAM}</strong><br />
+                      Total Population:{ma_counties_withgeo$totalpop}<br />
+                      Percent Irish Ancestry:{ma_counties_withgeo$per_irish}") %>% 
+  
+  lapply(htmltools::HTML)
+
+
+mapview(ma_counties_withgeo, zcol= "per_irish", 
+        col.regions = RColorBrewer::brewer.pal(9, "Reds"),
+        popup = mypopup,
+      label = thelabel)
+
+```
+
