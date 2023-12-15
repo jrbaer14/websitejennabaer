@@ -4,6 +4,8 @@ format: html
 editor: visual
 ---
 
+[Home Page](https://jrbaer14.github.io/websitejennabaer/)
+
 First I ran the packages I needed to execute this project, including a variety of mapping tools.
 
 ```{r setup, include=FALSE}
@@ -70,12 +72,6 @@ percent_irish <- irish_and_county %>%
   select(GEOID, NAME.x, irish_pop, county_pop)%>%
   mutate(perc_irish = (B04006_049E/B01003_001E)*100) %>%
   arrange(perc_irish)
-  
-  
-
-  
-  
-  
 
 ```
 
@@ -97,6 +93,7 @@ options(tigris_class = "sf")
 ```
 
 I simply brought down the whole analysis I previously did (and condensed it all into one line of code) so it would be easier to see as I coded the map.
+
 ```{r}
 
 percent_irish <- irish_and_county %>%
@@ -109,7 +106,9 @@ colnames(percent_irish) <- sub("E$", "", colnames(percent_irish))
 
 percent_irish
 ```
-I then pulled the geographic data for the counties from the American community survey and tied it to the original variables.
+
+I then pulled the geographic data for the counties from the American community survey and tied it to the original variables I looked at into one data set.
+
 ```{r}
 myvars <- c(county_pop = "B01003_001E", irish_pop = "B04006_049E")
 
@@ -124,8 +123,8 @@ ma_counties_withgeo
 
 ```
 
-
 I then again found the percentage of the population that has Irish ancestry in Massachusetts by mutating a new column, dividing the irish-population variable by the county-population variable and multiplying it by 100. I had to reconfigure the work I previously did in order to be able to map the mutated column (I needed to have the geographies of the county included in the dataset).
+
 ```{r}
 colnames(ma_counties_withgeo) <- sub("E$", "", colnames(ma_counties_withgeo))
 
@@ -133,22 +132,19 @@ ma_counties_withgeo
 
  ma_counties_withgeo <- ma_counties_withgeo %>%
   mutate(per_irish = (irish_pop/county_pop)*100)
-  
-
 
 ```
-
 
 I then used the mapview function to create a map of the percentage of people who have Irish ancestry in each county in Massachusetts. The color scheme is set so that the darker the red, the higher the percentage of people have Irish ancestry. Right now when you hover over each county you will be able to see the actual percentage of the population that has Irish ancestry.
+
 ```{r}
-mapview( ma_counties_withgeo, zcol= "per_irish", 
+mapview(ma_counties_withgeo, zcol= "per_irish", 
         col.regions = RColorBrewer::brewer.pal(9, "Reds"), 
         alpha.regions = 1)
-
 ```
 
-
 Customizing Labels: Here I am creating a custom label for the map itself through the glue function.This way, while hovering over each county you can see the name and the percentenage of people with Irish ancestry.
+
 ```{r}
 
 thelabel <- glue::glue("{ma_counties_withgeo$NAM} {ma_counties_withgeo$per_irish}")
@@ -159,23 +155,10 @@ mapview(ma_counties_withgeo, zcol= "per_irish",
         col.regions = RColorBrewer::brewer.pal(9, "Reds"),
         alpha.regions = 1,
         label = thelabel)
-
 ```
-
 
 Now I am creating a customized pop-up function, so when you run your cursor over each county, the total population and the percentage of the county that is of Irish descent will hover over it, as will the label for each.
-```{r}
 
-mypopup <- glue::glue("<strong>{ma_counties_withgeo$NAM}</strong><br />
-                      Total Population:{ma_counties_withgeo$totalpop}<br />
-                      Percent Irish:{ma_counties_withgeo$per_irish}") %>% 
-  lapply(htmltools::HTML)
-
-
-
-```
-
-Here is the version of the map I previously described
 ```{r}
 
 mypopup <- glue::glue("<strong>{ma_counties_withgeo$NAM}</strong><br />
@@ -188,6 +171,7 @@ mypopup <- glue::glue("<strong>{ma_counties_withgeo$NAM}</strong><br />
 mapview(ma_counties_withgeo, zcol= "per_irish", 
         col.regions = RColorBrewer::brewer.pal(9, "Reds"), 
         alpha.regions = 1,
-        popup = mypopup)
+        popup = mypopup,
+      label = thelabel)
 
 ```
