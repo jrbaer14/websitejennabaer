@@ -6,6 +6,8 @@ editor: visual
 
 # Jenna Baer Portfolio
 
+![](IMG_1012.HEIC)
+
 # [My GitHub](https://github.com/jrbaer14?tab=repositories)
 
 This site holds my data analysis repositories.
@@ -16,10 +18,14 @@ You can find my work history, awards and skills attached here.
 
 My contact information can be found here as well.
 
-# Writing Sample Research Paper
+# [Writing Sample Research Paper](https://jrbaer14.github.io/websitejennabaer/paperwritingsample.html)
 
 This website has a copy of my best academic research paper.
 
-# Writing Sample News Article
+# [Writing Sample News Article](https://jrbaer14.github.io/websitejennabaer/newsarticle)
 
-This website highlights a piece of my work
+This website highlights a piece of my work that was published online.
+
+# County Census Analysis Example
+
+This website showcases an example of my abilities to code with RStudio packages and GitHub.
