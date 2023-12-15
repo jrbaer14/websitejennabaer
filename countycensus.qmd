@@ -75,17 +75,12 @@ percent_irish <- irish_and_county %>%
 
 ```
 
-I ran the following packages to be able to use the mapping functions.
 
 ```{r}
 library(sf)
 library(tmaptools)
 library(htmltools)
-library(janitor)
 library(rmapshaper)
-library(here)
-library(tidyverse)
-library(tigris)
 library(tmap)
 options(tigris_class = "sf")
 
@@ -142,21 +137,7 @@ mapview(ma_counties_withgeo, zcol= "per_irish",
         alpha.regions = 1)
 ```
 
-Customizing Labels: Here I am creating a custom label for the map itself through the glue function.This way, while hovering over each county you can see the name and the percentenage of people with Irish ancestry.
-
-```{r}
-
-thelabel <- glue::glue("{ma_counties_withgeo$NAM} {ma_counties_withgeo$per_irish}")
-
-mapviewOptions("basemaps.color.shuffle" = FALSE)
-
-mapview(ma_counties_withgeo, zcol= "per_irish",
-        col.regions = RColorBrewer::brewer.pal(9, "Reds"),
-        alpha.regions = 1,
-        label = thelabel)
-```
-
-Now I am creating a customized pop-up function, so when you run your cursor over each county, the total population and the percentage of the county that is of Irish descent will hover over it, as will the label for each.
+Customizing Labels: Here I am creating a custom label for the map itself through the glue function.This way, while hovering over each county you can see the name and the percentenage of people with Irish ancestry.I am also creating a customized pop-up function, so when you run your cursor over each county, the total population and the percentage of the county that is of Irish descent will hover over it, as will the label for each.
 
 ```{r}
 
