@@ -87,7 +87,6 @@ library(here)
 library(tidyverse)
 library(tigris)
 library(tmap)
-library(terra)
 options(tigris_class = "sf")
 
 ```
