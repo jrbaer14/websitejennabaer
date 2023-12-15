@@ -6,7 +6,7 @@ editor: visual
 
 # Jenna Baer Portfolio
 
-![](IMG_1012.HEIC)
+![](IMG_1012.jpg){width="384"}
 
 # [My GitHub](https://github.com/jrbaer14?tab=repositories)
 
